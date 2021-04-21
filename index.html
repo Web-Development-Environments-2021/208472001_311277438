@@ -1,21 +1,155 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		
+		<script>
+			function show(hidden, shown1, shown2, shown3, shown4, shown5) {
+			  document.getElementById(hidden).style.display='block';
+			//   document.getElementById(hidden).style.color = "red";
+			  document.getElementById(shown1).style.display='none';
+			  document.getElementById(shown2).style.display='none';
+			  document.getElementById(shown3).style.display='none';
+			  document.getElementById(shown4).style.display='none';
+			  document.getElementById(shown5).style.display='none';
+			  return false;
+			}
+			</script>
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
+			<script>
+				function start()
+				{
+					show('welcome','register', 'login', 'settings', 'about', 'game');
+				}
+			window.addEventListener("load", start, false);
+			</script>
+
 	</head>
 
 	<body>
-		<div id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
-		</div>
-		<div id="time">
-			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
-		</div>
+		<div style="background-image: url('pics/wh.jpg');"></div>
+		<div class="nav">
+			<ul>
+			  <li><a href="#" onclick="return show('welcome','register', 'login', 'settings', 'about', 'game');" >Home</a></li>
+			  <li><a href="#" onclick="return show('settings','welcome', 'register', 'login', 'about', 'game');">Settings</a></li>
+			  <li><a href="#" onclick="return show('about','welcome', 'register', 'login', 'settings', 'game');">About</a></li>
+			  <li><a href="#"  onclick="return show('game','welcome', 'register', 'login', 'about', 'settings');">Game</a></li>
+			  <a class="navbar-brand">
+				<div class="logo-image">
+					  <img src="files/s.PNG"  width="46px" height="46px" class="img-fluid">
+				</div>
+			  </a>
+			</ul>
+		  </div>
+
+
+		<div id="welcome" class="welcome">
+			<br>
+			<br>
+			<br>
+			<h1>Let's Play Pacman!</h1>
+			<br>
+			<h5>If you haven't registered yet, click here:</h5>
+			<br>
+			<input class="button" type="button" value="Register" onclick="return show('register','welcome', 'login', 'settings', 'about', 'game');" />
+			<br>
+			<br>
+			<h5>Registered user - Login to play:</h5>
+			<br>
+			<input class="button" type="button" value="Login" onclick="return show('login','welcome', 'register', 'settings', 'about', 'game');" />
+
+		  </div>
+
+		  <div id="register" class="details">
+			  <br>
+			  <br>
+			  <form>
+				<h1>Please enter your details to sign in</h1>
+				<label> Username: </label>
+				<input id="username" type="text" />
+				<br>
+				<h3>
+				Password: <input type="password" id="myPassword">
+				<!-- An element to toggle between password visibility -->
+				<input type="checkbox" onclick="myFunction()">Show Password
+				</h3>
+				<label>Full Name:</label>
+				<input id="name" type="text" />
+				<br>
+				<br>
+				<h4><label>Email:</label>
+				<input id="email" type="text" /></h4>
+				<br>
+				<label class="date" for="start">Birth Date:</label>
+				<input type="date" id="start" name="trip-start">
+					<!-- value="2018-07-22"
+					min="2018-01-01" max="2018-12-31"> -->
+				<br>
+				<br>
+				<input class="button" type="button" value="Submit" onclick="insert()" />
+				</form>
+				<div id="display"></div>
+		  </div>
+
+		  <div id="login" class="details">
+			  <br>
+			  <br>
+			  <br>
+			  <h2>Please enter your details account for Login:</h2>
+			  <br>
+			  <label>Username:</label>
+			  <input id="username" type="text" />
+			  <br>
+			  <br>
+			  <label>Password:</label>
+			  <input id="password" type="text" />
+			  <br>
+			  <br>
+			  <input class="button" type="button" value="Submit" onclick="insert()" />
+		  </div>
+
+		  <div id="settings">
+			  <br>
+			  <br>
+			  <br>
+			settings page
+		  </div>
+
+		  <div id="about">
+			  <br>
+			  <br>
+			  <br>
+			about page
+		  </div>
+		
+
 		<div id="game">
+			
+			<br>
+			<br>
+			<br>
 			<canvas id="canvas" height="600" width="600"></canvas>
+			<div id="score">
+				<label for="lblScore">SCORE:</label>
+				<input id="lblScore" type="text" />
+			</div>
+			<div id="time">
+				<label for="lblTime">TIME:</label>
+				<input id="lblTime" type="text" />
+			</div>
 		</div>
 	</body>
+
+	<script>
+		function myFunction() {
+			var x = document.getElementById("myPassword");
+			if (x.type === "password") {
+			  x.type = "text";
+			} else {
+			  x.type = "password";
+			}
+		  }
+		</script>
+
 </html>
