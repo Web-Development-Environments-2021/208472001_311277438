@@ -2,27 +2,15 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css" />
-		
-		<script>
-			function show(hidden, shown1, shown2, shown3, shown4, shown5) {
-			  document.getElementById(hidden).style.display='block';
-			//   document.getElementById(hidden).style.color = "red";
-			  document.getElementById(shown1).style.display='none';
-			  document.getElementById(shown2).style.display='none';
-			  document.getElementById(shown3).style.display='none';
-			  document.getElementById(shown4).style.display='none';
-			  document.getElementById(shown5).style.display='none';
-			  return false;
-			}
-			</script>
+	
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
 			<script>
-				function start()
+				function startWindow()
 				{
-					show('welcome','register', 'login', 'settings', 'about', 'game');
+					show('welcome','register', 'login', 'gameSettings', 'about', 'game');
 				}
-			window.addEventListener("load", start, false);
+			window.addEventListener("load", startWindow, false);
 			</script>
 
 	</head>
@@ -31,10 +19,9 @@
 		<div style="background-image: url('pics/wh.jpg');"></div>
 		<div class="nav">
 			<ul>
-			  <li><a href="#" onclick="return show('welcome','register', 'login', 'settings', 'about', 'game');" >Home</a></li>
-			  <li><a href="#" onclick="return show('settings','welcome', 'register', 'login', 'about', 'game');">Settings</a></li>
-			  <li><a href="#" onclick="return show('about','welcome', 'register', 'login', 'settings', 'game');">About</a></li>
-			  <li><a href="#"  onclick="return show('game','welcome', 'register', 'login', 'about', 'settings');">Game</a></li>
+			  <li><a href="#" onclick="return show('welcome','register', 'login', 'gameSettings', 'about', 'game');" >Home</a></li>
+			  <li><a href="#" onclick="return show('about','welcome', 'register', 'login', 'gameSettings', 'game');">About</a></li>
+			  <li><a href="#" onclick="return show('game','welcome', 'register', 'login', 'about', 'gameSettings');">Game</a></li>
 			  <a class="navbar-brand">
 				<div class="logo-image">
 					  <img src="files/s.PNG"  width="46px" height="46px" class="img-fluid">
@@ -52,34 +39,34 @@
 			<br>
 			<h5>If you haven't registered yet, click here:</h5>
 			<br>
-			<input class="button" type="button" value="Register" onclick="return show('register','welcome', 'login', 'settings', 'about', 'game');" />
+			<input class="button" type="button" value="Register" onclick="return show('register','welcome', 'login', 'gameSettings', 'about', 'game');" />
 			<br>
 			<br>
 			<h5>Registered user - Login to play:</h5>
 			<br>
-			<input class="button" type="button" value="Login" onclick="return show('login','welcome', 'register', 'settings', 'about', 'game');" />
+			<input class="button" type="button" value="Login" onclick="return show('login','welcome', 'register', 'gameSettings', 'about', 'game');" />
 
 		  </div>
 
 		  <div id="register" class="details">
 			  <br>
 			  <br>
-			  <form>
+			  <form id="regForm" action="" method="post">
 				<h1>Please enter your details to sign in</h1>
 				<label> Username: </label>
-				<input id="username" type="text" />
+				<input id="myUsername" type="text"/>
 				<br>
 				<h3>
-				Password: <input type="password" id="myPassword">
+				Password: <input type="password" id="myPassword"/>
 				<!-- An element to toggle between password visibility -->
-				<input type="checkbox" onclick="myFunction()">Show Password
+				<input type="checkbox" onclick="myFunction()" >Show Password
 				</h3>
 				<label>Full Name:</label>
-				<input id="name" type="text" />
+				<input id="name" type="text"/>
 				<br>
 				<br>
 				<h4><label>Email:</label>
-				<input id="email" type="text" /></h4>
+				<input id="email"/></h4>
 				<br>
 				<label class="date" for="start">Birth Date:</label>
 				<input type="date" id="start" name="trip-start">
@@ -87,7 +74,7 @@
 					min="2018-01-01" max="2018-12-31"> -->
 				<br>
 				<br>
-				<input class="button" type="button" value="Submit" onclick="insert()" />
+				<input class="button" type="submit" value="Submit"/>
 				</form>
 				<div id="display"></div>
 		  </div>
@@ -96,24 +83,69 @@
 			  <br>
 			  <br>
 			  <br>
-			  <h2>Please enter your details account for Login:</h2>
+			  <h2>Please enter your account details for Login:</h2>
 			  <br>
 			  <label>Username:</label>
-			  <input id="username" type="text" />
+			  <input id="username" type="text" value="k"/>
 			  <br>
 			  <br>
 			  <label>Password:</label>
-			  <input id="password" type="text" />
+			  <input id="password" type="text" value="k"/>
 			  <br>
 			  <br>
-			  <input class="button" type="button" value="Submit" onclick="insert()" />
+			  <input class="button" type="button" value="Submit" onclick="checkIfExist()" />
 		  </div>
 
-		  <div id="settings">
+		  <div id="gameSettings">
+			<br>
+			<br>
+			<form id="form_settings" onsubmit="submitSettings()">
+			  <h1>Please enter your settings for the game</h1>
+			  <label> Up key: </label>
+			  <input id="Up_key" type="text" value="w" class="inp">
 			  <br>
 			  <br>
+			  <label> Down key: </label>
+			  <input id="Down_key" type="text" value="s" class="inp">
 			  <br>
-			settings page
+			  <br>
+			  <label> Right key: </label>
+			  <input id="Right_key" type="text" value="d" class="inp">
+			  <br>
+			  <br>
+			  <label> left key: </label>
+			  <input id="left_key" type="text" value="a" class="inp">
+			  <br>
+			  <br>
+			  <label> Balls amount (must be between 50 - 90): </label>
+			  <input id="Balls_amount" type="text" value="60" class="inp">
+			  <br>
+			  <br>
+			  <label> Balls color (choose 3): </label><br>
+			  <h6>
+				<input id="Red" type="checkbox" value="Red" ><b> Red</b><br>
+				<input id="Blue" type="checkbox" value="Blue" checked> <b>Blue</b><br>
+				<input id="Green" type="checkbox" value="Green"><b>Green</b> <br>
+				<input id="Black" type="checkbox" value="Black" checked> <b>Black</b><br>
+				<input id="Purple" type="checkbox" value="Purple"><b>Purple</b><br>
+				<input id="Pink" type="checkbox" value="Pink" checked><b>Pink</b> <br>
+			</h6>
+			  <br>
+			  <label> Set time in seconds (minimum 60 seconds) (seconds): </label>
+			  <input id="game_time" type="text" value="70" size="1" class="inp">
+			  <br>
+			  <br>
+			  <label> Set mosters amount </label>
+			  <select id="moster_amount">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+			  </select>
+			  <br>
+			  <br>
+			  <input id="submit_settings" type="submit" class="button" value="Submit" />
+			</form>
 		  </div>
 
 		  <div id="about">
@@ -151,5 +183,18 @@
 			}
 		  }
 		</script>
+
+	<script>
+		function show(hidden, shown1, shown2, shown3, shown4, shown5) {
+		document.getElementById(hidden).style.display='block';
+		//   document.getElementById(hidden).style.color = "red";
+		document.getElementById(shown1).style.display='none';
+		document.getElementById(shown2).style.display='none';
+		document.getElementById(shown3).style.display='none';
+		document.getElementById(shown4).style.display='none';
+		document.getElementById(shown5).style.display='none';
+		// return false;
+		}
+	</script>
 
 </html>

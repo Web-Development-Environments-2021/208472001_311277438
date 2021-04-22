@@ -8,11 +8,232 @@ let time_elapsed;
 let interval;
 let current;
 let last_press_direction;
+let Up_key;
+let Down_key;
+let Right_key;
+let left_key;
+let Balls_amount;
+let color_balls;
+let game_time;
+let moster_amount;
+let red;
+let blue;
+let green;
+let black;
+let purple;
+let pink;
+let user_login;
+let pass_login;
+var usernames = ["k"];
+var passwords = ["k"];
+
+
+
+
+function aboutt(){
+	$(function () {
+		$("#dialog_show").click(function () {
+			//Use Jquery load function
+			$("#div_content2").load("TimerTest.aspx");
+			$("#div_content2").dialog({
+				modal: true,
+				buttons: {
+					Ok: function () {
+						$(this).dialog("close");
+					}
+				}
+			});
+		});
+	});
+}
+
+
+
+	$(document).ready(function() {
+		$('#regForm').submit(function(e) {
+		e.preventDefault();
+		var name = $('#name').val();
+		var username = $('#myUsername').val();
+		var email = $('#email').val();
+		var password = $('#myPassword').val();
+		var birth = $('#start').val();
+		var isValidForm = true;
+	
+		$(".error").remove();
+	
+		if (username.length < 1) {
+			$('#myUsername').after('<span class="error"><br>This field is required</span>');
+			isValidForm = false;
+		}
+		if (name.length < 1) {
+			$('#name').after('<span class="error"><br>This field is required</span>');
+			isValidForm = false;
+		} 
+		else {
+			var validName = /^[a-zA-Z]+$/.test(name);
+			if (!validName)
+			{
+				$('#name').after('<span class="error"><br>Full name can only contain letters</span>');
+				isValidForm = false;
+			}
+		}
+		if (birth.length < 1) {
+			$('#start').after('<span class="error"><br>This field is required</span>');
+			isValidForm = false;
+		}
+		if (email.length < 1) {
+			$('#email').after('<span class="error"><br>This field is required</span>');
+			isValidForm = false;
+		} else {
+			var regEx = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+			var validEmail = regEx.test(email);
+			if (!validEmail) {
+				$('#email').after('<span class="error"><br>Enter a valid email</span>');
+				isValidForm = false;
+			}
+		}
+		if (password.length < 1) {
+			$('#myPassword').after('<span class="error"><br>This field is required</span>');
+			isValidForm = false;
+			} else 
+			{
+				if (password.length < 6)
+				{
+					$('#myPassword').after('<span class="error"><br>Password must be at least 6 characters long</span>');
+					isValidForm = false;
+				}
+				var regexPass1 = /^[a-zA-Z]+$/;
+				var onlyLettersCheck = regexPass1.test(password);
+				var regexPass2 = /^[0-9]+$/;
+				var onlyNumbersCheck = regexPass2.test(password);
+				if (onlyLettersCheck || onlyNumbersCheck)
+				{
+					$('#myPassword').after('<span class="error"><br>Password must include both numbers and letters</span>');
+					isValidForm = false;
+				}
+			}
+
+		if (isValidForm)
+		{
+			show('gameSettings','welcome', 'register', 'login', 'about', 'game');
+		}
+
+	});
+});
+
+// setting
 
 $(document).ready(function() {
-	context = canvas.getContext("2d");
-	Start();
+		$('#form_settings').submit(function(e) {
+		e.preventDefault();
+		let isValidForm = true;
+	
+		Up_key = $('#Up_key').val(); //
+		Down_key = $('#Down_key').val(); //
+		Right_key = $('#Right_key').val(); //
+		left_key = $('#left_key').val(); //
+		Balls_amount = $('#Balls_amount').val();//
+		game_time = $('#game_time').val();//
+		moster_amount = $('#moster_amount').val();
+		let colorsNumber = 0;
+
+		if($("#Red").prop('checked') == true){
+			red = "red";
+			colorsNumber = colorsNumber + 1;
+		}
+		if($("#Blue").prop('checked') == true){
+			blue = "blue";
+			colorsNumber = colorsNumber + 1;
+		}
+		if($("#Green").prop('checked') == true){
+			green = "green";
+			colorsNumber = colorsNumber + 1;
+		}
+		if($("#Black").prop('checked') == true){
+			black = "black";
+			colorsNumber = colorsNumber + 1;
+		}
+		if($("#Purple").prop('checked') == true){
+			purple = "purple";
+			colorsNumber = colorsNumber + 1;
+		}
+		if($("#Pink").prop('checked') == true){
+			pink = "pink";
+			colorsNumber = colorsNumber + 1;
+		}
+
+		$(".error").remove();
+	
+		if (Up_key.length != 1 ) {
+			$('#Up_key').after('<span class="error"><br>Must be one key</span>');
+			isValidForm = false;		}
+		if (Down_key.length != 1) {
+			$('#Down_key').after('<span class="error"><br>Must be one key</span>');
+			isValidForm = false;		}
+		if (Right_key.length != 1) {
+			$('#Right_key').after('<span class="error"><br>Must be one key</span>');
+			isValidForm = false;		}
+		if (left_key.length != 1) {
+			$('#left_key').after('<span class="error"><br>Must be one key</span>');
+			isValidForm = false;
+		}
+
+		let Balls_amountNumber = /^\d+$/.test(Balls_amount);
+		if (!Balls_amountNumber)
+		{
+			$('#Balls_amount').after('<span class="error"><br>Must be a number</span>');
+			isValidForm = false;
+		}
+		else if (Number(Balls_amount) < 50 || Number(Balls_amount) > 90){
+			$('#Balls_amount').after('<span class="error"><br>Number must be between 60 - 90</span>');
+			isValidForm = false;
+		}
+
+		let game_timeNumber = /^\d+$/.test(game_time);
+		if (!Balls_amountNumber)
+		{
+			$('#game_time').after('<span class="error"><br>Must be a number</span>');
+			isValidForm = false;
+		}
+		else if (Number(game_time) < 60){
+			$('#game_time').after('<span class="error"><br>Number must atlist 60</span>');
+			isValidForm = false;
+		}
+		
+		if(colorsNumber != 3){
+			$('#colorNumber').after('<span class="error"><br>Must be exactly 3 colors!</span>');
+			isValidForm = false;
+		}
+		
+		if (isValidForm)
+		{
+			show('game','welcome', 'register', 'gameSettings', 'about', 'login');
+			context = canvas.getContext("2d");
+			Start();
+		}
+	});
 });
+
+
+function checkIfExist()
+{
+	user_login = document.getElementById("username").value;
+	pass_login = document.getElementById("password").value;
+	if (user_login.length == 0 || pass_login.length == 0)
+	{
+		alert("Failed to Login. Please fill the fields")
+		return;
+	}
+	for (var i = 0; i < usernames.length; i++) {
+			if (user_login == usernames[i] && pass_login == passwords[i]) {
+			show('gameSettings','welcome', 'register', 'login', 'about', 'game');
+			return;
+			} 
+		}
+		alert('Failed to Login. Incorrect username or password');
+}
+
+
 
 function Start() {
 	board = new Array();
@@ -72,7 +293,7 @@ function Start() {
 		},
 		false
 	);
-	interval = setInterval(UpdatePosition, 150);
+	interval = setInterval(UpdatePosition, 160);
 }
 
 function findRandomEmptyCell(board) {
@@ -86,16 +307,23 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
-	if (keysDown[38]) {
+	// var up1 = up.which || up.keyCode;
+	// var down1 = down.which || down.keyCode;
+	// var left1 = left.which || left.keyCode;
+	// var right1 = right.which || right.keyCode;
+
+	// alert(up1);
+
+	if (keysDown[38]) { // up
 		return 1;
 	}
-	if (keysDown[40]) {
+	if (keysDown[40]) { // down
 		return 2;
 	}
-	if (keysDown[37]) {
+	if (keysDown[37]) { // left
 		return 3;
 	}
-	if (keysDown[39]) {
+	if (keysDown[39]) { // right
 		return 4;
 	}
 }
@@ -138,7 +366,7 @@ function Drawplayer(center, x){
 		last_press_direction = 3;
 	}
 	if (x == 4){
-		context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // right
+		context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); 
 		context.lineTo(center.x, center.y);
 		context.fillStyle = pac_color; //color
 		context.fill();
@@ -151,6 +379,26 @@ function Drawplayer(center, x){
 	}
 }
 
+//now
+//0 - empty
+//1 - ball
+//2 - player
+//4 - wall
+
+//needs to be
+//0 - empty
+//1 - ball color1
+//2 - ball color2
+//3 - ball color3
+//4 - wall
+//5 - player
+
+//6 - monster1
+//7 - monster2
+//8 - monster3
+//9 - monster4
+//or
+//6 - 
 
 function Draw(x) {
 	let moves = [1, 2, 3, 4];
