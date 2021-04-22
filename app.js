@@ -115,6 +115,8 @@ function aboutt(){
 
 		if (isValidForm)
 		{
+			usernames.push(username);
+			passwords.push(password);
 			show('gameSettings','welcome', 'register', 'login', 'about', 'game');
 		}
 
@@ -217,8 +219,8 @@ $(document).ready(function() {
 
 function checkIfExist()
 {
-	user_login = document.getElementById("username").value;
-	pass_login = document.getElementById("password").value;
+	user_login = document.getElementById("usernameLogin").value;
+	pass_login = document.getElementById("passwordLogin").value;
 	if (user_login.length == 0 || pass_login.length == 0)
 	{
 		alert("Failed to Login. Please fill the fields")
