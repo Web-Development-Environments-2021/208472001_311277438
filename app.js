@@ -29,13 +29,11 @@ var usernames = ["k"];
 var passwords = ["k"];
 let threeColors =new Array();
 var audio = new Audio("pics/blingbling.mp3");
-var list = [];
 var movingShape;
-// var col = "#b5e61d";
-let center = new Object();
 var i1 = 5;
 var j1 = 5;
 var secBoard = new Array();
+var choice;
 
 function aboutt(){
 	$(function () {
@@ -268,7 +266,7 @@ function checkIfExist()
 
 
 function Start() {
-	// audio.play();
+	audio.play();
 	board = new Array();
 	score = 0;
 	pac_color = "yellow";
@@ -496,13 +494,10 @@ function Draw(x) {
 				else
 					Drawplayer(center, last_press_direction);
 			} else if (secBoard[i][j] == 7){
-				// context.clearReact(prevCenterX - 30, prevCenterY - 30, 60, 60);
 				context.beginPath();
 				context.rect(center.x - 30, center.y - 30, 60, 60);
 				context.fillStyle = "green"; //color
 				context.fill();
-				// prevCenterX = center.x;
-				// prevCenterY = center.y;
 			} else if (board[i][j] == 1) {
 				context.beginPath();
 				context.arc(center.x, center.y, 15, 0, 2 * Math.PI);
@@ -611,11 +606,8 @@ function UpdatePosition() {
 
 	function movingShape() {
 
-		var choice;
-
+		found = false;
 		secBoard[i1][j1] = 0;
-
-		foundNext = false;
 
 		do{
 			choice = Math.floor(Math.random() * 4 + 1);
@@ -626,7 +618,7 @@ function UpdatePosition() {
 				{
 					j1 -= 1;
 					secBoard[i1][j1] = 7;
-					foundNext = true;
+					found = true;
 				}
 			}
 			else if (choice == 2) //down
@@ -635,7 +627,7 @@ function UpdatePosition() {
 				{
 					j1 += 1;
 					secBoard[i1][j1] = 7;
-					foundNext = true;
+					found = true;
 				}
 			}
 			else if (choice == 3) //left
@@ -644,7 +636,7 @@ function UpdatePosition() {
 				{
 					i1--;
 					secBoard[i1][j1] = 7;
-					foundNext = true;
+					found = true;
 				}
 			}
 			else if (choice == 4) //right
@@ -653,10 +645,10 @@ function UpdatePosition() {
 				{
 					i1++;
 					secBoard[i1][j1] = 7;
-					foundNext = true;
+					found = true;
 				}
 			}
-		} while (!foundNext)
+		} while (!found)
 		
 
 	}
