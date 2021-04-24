@@ -52,7 +52,7 @@
 			  <br>
 			  <br>
 			  <form id="regForm" action="" method="post">
-				<h1>Please enter your details to sign in</h1>
+				<h1>Enter your details to sign in</h1>
 				<label> Username: </label>
 				<input id="myUsername" type="text"/>
 				<br>
@@ -83,7 +83,7 @@
 			  <br>
 			  <br>
 			  <br>
-			  <h2>Please enter your account details for Login:</h2>
+			  <h2>Enter your account details for Login</h2>
 			  <br>
 			  <label>Username:</label>
 			  <input id="usernameLogin" type="text" value="k"/>
@@ -101,7 +101,7 @@
 			<br>
 			<br>
 			<form id="form_settings" onsubmit="submitSettings()">
-			  <h1>Please enter your settings for the game</h1>
+			  <h1>Set your Preferences</h1>
 			  <label> Up key: </label>
 			  <input id="Up_key" type="text" value="w" class="inp">
 			  <br>
@@ -119,7 +119,7 @@
 			  <br>
 			  <br>
 			  <label> Balls amount (must be between 50 - 90): </label>
-			  <input id="Balls_amount" type="text" value="60" class="inp">
+			  <input id="Balls_amount" type="text" value="55" class="inp">
 			  <br>
 			  <br>
 			  <label> Balls color (choose 3): </label><br>
@@ -132,7 +132,7 @@
 				<input id="Pink" type="checkbox" value="Pink" checked><b>Pink</b> <br>
 			</h6>
 			  <br>
-			  <label> Set time in seconds (minimum 60 seconds) (seconds): </label>
+			  <label> Set time in seconds (minimum 60 seconds): </label>
 			  <input id="game_time" type="text" value="70" size="1" class="inp">
 			  <br>
 			  <br>
@@ -157,12 +157,18 @@
 		  </div>
 		
 
-		<div id="game">
+		<div id="game" class="gameP">
 			
 			<br>
 			<br>
 			<br>
+			<div class="nameU">
+			Good Luck <span id="outputName"></span>!
+			</div>
+			<br>
+			<div class="canv">
 			<canvas id="canvas" height="600" width="600"></canvas>
+			</div>
 			<div id="score">
 				<label for="lblScore">SCORE:</label>
 				<input id="lblScore" type="text" />
@@ -171,8 +177,32 @@
 				<label for="lblTime">TIME:</label>
 				<input id="lblTime" type="text" />
 			</div>
+			<div>
+				<label for="new game">New game:</label>
+				<input id="neGameButton" type="button" onclick="Start()" />
+			</div>
+			<div id="lives">
+				<label for="lblpacman_remain">Lives remains:</label>
+				<input id="lblpacman_remain" type="text" />
+			</div>
 		</div>
 	</body>
+
+	<script>
+		function scrennUsernameRegister()
+		{
+			var name = document.getElementById("myUsername").value;
+			outputName.innerHTML = name;
+		}
+	</script>
+
+	<script>
+		function scrennUsernameLogin()
+		{
+			var name = document.getElementById("usernameLogin").value;
+			outputName.innerHTML = name;
+		}
+	</script>
 
 	<script>
 		function myFunction1() {
