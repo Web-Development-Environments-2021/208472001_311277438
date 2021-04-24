@@ -17,15 +17,19 @@
 
 	<body>
 		<div style="background-image: url('pics/wh.jpg');"></div>
+
+		<img src="pics/‏‏pac_head1.PNG" alt="Girl in a jacket" width="600" height="80">
+
 		<div class="nav">
 			<ul>
-			  <li><a href="#" onclick="return show('welcome','register', 'login', 'gameSettings', 'about', 'game');" >Home</a></li>
-			  <li><a href="#" onclick="return show('about','welcome', 'register', 'login', 'gameSettings', 'game');">About</a></li>
-			  <li><a href="#" onclick="return show('game','welcome', 'register', 'login', 'about', 'gameSettings');">Game</a></li>
-			  <a class="navbar-brand">
+			  <li><a href="#" onclick="show('welcome','register', 'login', 'gameSettings', 'about', 'game'); stopGame()" >Welcome</a></li>
+			  <li><a href="#" onclick="show('register','welcome', 'about', 'login', 'gameSettings', 'game'); stopGame()">Register</a></li>
+			  <li><a href="#" onclick="show('login','welcome', 'register', 'about', 'gameSettings', 'game') ; stopGame()">Login</a></li>
+			  <li><a href="#" onclick="show('about','welcome', 'register', 'login', 'gameSettings', 'game'); stopGame()">About</a></li>
+			  <!-- <a class="navbar-brand">
 				<div class="logo-image">
 					  <img src="files/s.PNG"  width="46px" height="46px" class="img-fluid">
-				</div>
+				</div> -->
 			  </a>
 			</ul>
 		  </div>
@@ -33,23 +37,20 @@
 
 		<div id="welcome" class="welcome">
 			<br>
-			<br>
-			<br>
 			<h1>Let's Play Pacman!</h1>
 			<br>
 			<h5>If you haven't registered yet, click here:</h5>
 			<br>
-			<input class="button" type="button" value="Register" onclick="return show('register','welcome', 'login', 'gameSettings', 'about', 'game');" />
+			<input class="button" type="button" value="Register" onclick="show('register','welcome', 'login', 'gameSettings', 'about', 'game');" />
 			<br>
 			<br>
 			<h5>Registered user - Login to play:</h5>
 			<br>
-			<input class="button" type="button" value="Login" onclick="return show('login','welcome', 'register', 'gameSettings', 'about', 'game');" />
+			<input class="button" type="button" value="Login" onclick="show('login','welcome', 'register', 'gameSettings', 'about', 'game');" />
 
 		  </div>
 
 		  <div id="register" class="details">
-			  <br>
 			  <br>
 			  <form id="regForm" action="" method="post">
 				<h1>Enter your details to sign in</h1>
@@ -81,10 +82,7 @@
 
 		  <div id="login" class="details">
 			  <br>
-			  <br>
-			  <br>
-			  <h2>Enter your account details for Login</h2>
-			  <br>
+			  <h1>Enter your account details for Login</h1>
 			  <label>Username:</label>
 			  <input id="usernameLogin" type="text" value="k"/>
 			  <br>
@@ -99,9 +97,8 @@
 
 		  <div id="gameSettings">
 			<br>
-			<br>
 			<form id="form_settings" onsubmit="submitSettings()">
-			  <h1>Set your Preferences</h1>
+			  <h1>Set your preferences</h1>
 			  <label> Up key: </label>
 			  <input id="Up_key" type="text" value="w" class="inp">
 			  <br>
@@ -151,41 +148,40 @@
 
 		  <div id="about">
 			  <br>
-			  <br>
-			  <br>
 			about page
 		  </div>
 		
 
 		<div id="game" class="gameP">
-			
-			<br>
-			<br>
 			<br>
 			<div class="nameU">
-			Good Luck <span id="outputName"></span>!
+			<b>Good Luck <span id="outputName"></span>!</b>
 			</div>
-			<br>
 			<div class="canv">
-			<canvas id="canvas" height="600" width="600"></canvas>
+			<canvas id="canvas" height="600" width="600" style="border: 3px solid rgb(150, 68, 53);"></canvas>
 			</div>
 			<div id="score">
-				<label for="lblScore">SCORE:</label>
-				<input id="lblScore" type="text" />
+				<b><label for="lblScore">Score:</label></b>
+				<input id="lblScore" type="text" class="inp"/>
 			</div>
 			<div id="time">
-				<label for="lblTime">TIME:</label>
-				<input id="lblTime" type="text" />
-			</div>
-			<div>
-				<label for="new game">New game:</label>
-				<input id="neGameButton" type="button" onclick="Start()" />
+				<b><label for="lblTime">Time:</label></b>
+				<input id="lblTime" type="text" class="inp"/>
 			</div>
 			<div id="lives">
-				<label for="lblpacman_remain">Lives remains:</label>
-				<input id="lblpacman_remain" type="text" />
+				<b><label for="lblpacman_remain">Lives:</label></b>
+				<input id="lblpacman_remain" type="text" class="inp"/>
 			</div>
+			<br>
+			<div>
+				<input id="music" value="Stop Music" type="button" class="button" onclick="setMusic()" />
+			</div>
+			<div>
+				<input value="New Game" type="button" class="button" onclick="show('gameSettings','welcome', 'register', 'login', 'about', 'game'); stopGame()" />
+			</div>
+			<br>
 		</div>
+
 	</body>
 
 	<script>
@@ -225,6 +221,7 @@
 			}
 		}
 		</script>
+
 
 
 	<script>
