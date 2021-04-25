@@ -32,6 +32,8 @@ var sum_balls;
 var ateShape = false;
 var inGame = false;
 var playMusic = false;
+var existBalls = false;
+var endGame = false;
 
 function aboutt(){
 	$(function () {
@@ -134,86 +136,81 @@ function aboutt(){
 // setting
 
 $(document).ready(function() {
-		$('#form_settings').submit(function(e) {
-		e.preventDefault();
-		let isValidForm = true;
+	$('#form_settings').submit(function(e) {
+	e.preventDefault();
+	let isValidForm = true;
 
-		Up_key = $('#Up_key').val(); 
-		Down_key = $('#Down_key').val(); 
-		Right_key = $('#Right_key').val(); 
-		left_key = $('#left_key').val(); 
-		Balls_amount = $('#Balls_amount').val();
-		game_time = $('#game_time').val();
-		moster_amount = $('#moster_amount').val();
-		let colorsNumber = 0;
+	Up_key = $('#Up_key').val(); 
+	Down_key = $('#Down_key').val(); 
+	Right_key = $('#Right_key').val(); 
+	left_key = $('#left_key').val(); 
+	Balls_amount = $('#Balls_amount').val();
+	game_time = $('#game_time').val();
+	moster_amount = $('#moster_amount').val();
+	let counterKeys = 0;
 
-		if($("#Red").prop('checked') == true){
-			threeColors[colorsNumber] = "red";
-			colorsNumber = colorsNumber + 1;
-		}
-		if($("#Blue").prop('checked') == true){
-			threeColors[colorsNumber] = "blue";
-			colorsNumber = colorsNumber + 1;
-		}
-		if($("#Green").prop('checked') == true){
-			threeColors[colorsNumber] = "green";
-			colorsNumber = colorsNumber + 1;
-		}
-		if($("#Black").prop('checked') == true){
-			threeColors[colorsNumber] = "black";
-			colorsNumber = colorsNumber + 1;
-		}
-		if($("#Purple").prop('checked') == true){
-			threeColors[colorsNumber] = "purple";
-			colorsNumber = colorsNumber + 1;
-		}
-		if($("#Pink").prop('checked') == true){
-			threeColors[colorsNumber] = "pink";
-			colorsNumber = colorsNumber + 1;
-		}
+	if($('#small_balls_amount').val() == $('#medium_balls_amount').val() || $('#small_balls_amount').val() == $('#big_balls_amount').val() || $('#big_balls_amount').val() == $('#medium_balls_amount').val()){
+		alert('Must be 3 different colors');
+		isValidForm = false;
+	}
 
-		$(".error").remove();
-	
-		if (Up_key.length != 1 ) {
-			$('#Up_key').after('<span class="error"><br>Must be one key</span>');
-			isValidForm = false;		}
-		if (Down_key.length != 1) {
-			$('#Down_key').after('<span class="error"><br>Must be one key</span>');
-			isValidForm = false;		}
-		if (Right_key.length != 1) {
-			$('#Right_key').after('<span class="error"><br>Must be one key</span>');
-			isValidForm = false;		}
-		if (left_key.length != 1) {
-			$('#left_key').after('<span class="error"><br>Must be one key</span>');
-			isValidForm = false;
-		}
+	threeColors[0] = $('#small_balls_amount').val();
+	threeColors[1] = $('#medium_balls_amount').val();
+	threeColors[2] = $('#big_balls_amount').val();
 
-		let Balls_amountNumber = /^\d+$/.test(Balls_amount);
-		if (!Balls_amountNumber)
-		{
-			$('#Balls_amount').after('<span class="error"><br>Must be a number</span>');
-			isValidForm = false;
-		}
-		else if (Math.floor(Balls_amount) < 50 || Math.floor(Balls_amount) > 90){
-			$('#Balls_amount').after('<span class="error"><br>Number must be between 60 - 90</span>');
-			isValidForm = false;
-		}
+	$(".error").remove();
 
-		let game_timeNumber = /^\d+$/.test(game_time);
-		if (!Balls_amountNumber)
-		{
-			$('#game_time').after('<span class="error"><br>Must be a number</span>');
-			isValidForm = false;
-		}
-		else if (Math.floor(game_time) < 60){
-			$('#game_time').after('<span class="error"><br>Must at least 60</span>');
-			isValidForm = false;
-		}
-		
-		if(colorsNumber != 3){
-			$('#colorNumber').after('<span class="error"><br>Must be exactly 3 colors!</span>');
-			isValidForm = false;
-		}
+	if (Up_key.length == 1 ) {
+		counterKeys++;		}
+	if (Down_key.length == 1) {
+		counterKeys++;		}
+	if (Right_key.length == 1) {
+		counterKeys++;		}
+	if (left_key.length == 1) {
+		counterKeys++;
+	}
+	if(counterKeys == 0){
+		Up_key = 38;
+		Down_key = 40;
+		left_key = 37;
+		Right_key = 39;
+	}
+	else if (counterKeys == 4) {
+		Up_key = Up_key.toUpperCase().charCodeAt(0);
+		Down_key =Down_key.toUpperCase().charCodeAt(0);
+		left_key = left_key.toUpperCase().charCodeAt(0);
+		Right_key = Right_key.toUpperCase().charCodeAt(0);
+	}
+	else{
+		$('#Up_key').after('<span class="error"><br>Must be one key</span>');
+		$('#Down_key').after('<span class="error"><br>Must be one key</span>');
+		$('#Right_key').after('<span class="error"><br>Must be one key</span>');
+		$('#left_key').after('<span class="error"><br>Must be one key</span>');
+		isValidForm = false;
+	}
+
+
+	let Balls_amountNumber = /^\d+$/.test(Balls_amount);
+	if (!Balls_amountNumber)
+	{
+		$('#Balls_amount').after('<span class="error"><br>Must be a number</span>');
+		isValidForm = false;
+	}
+	else if (Math.floor(Balls_amount) < 50 || Math.floor(Balls_amount) > 90){
+		$('#Balls_amount').after('<span class="error"><br>Number must be between 60 - 90</span>');
+		isValidForm = false;
+	}
+
+	let game_timeNumber = /^\d+$/.test(game_time);
+	if (!game_timeNumber)
+	{
+		$('#game_time').after('<span class="error"><br>Must be a number</span>');
+		isValidForm = false;
+	}
+	else if (Math.floor(game_time) < 60){
+		$('#game_time').after('<span class="error"><br>Number must atlist 60</span>');
+		isValidForm = false;
+	}
 		
 		if (isValidForm)
 		{
@@ -222,11 +219,47 @@ $(document).ready(function() {
 			audio.pause();
 			audio.currentTime = 0
 			show('game','welcome', 'register', 'gameSettings', 'about', 'login');
-			context = canvas.getContext("2d");
-			Start();
+			Start();			
 		}
 	});
 });
+
+
+
+function randomsettings(){
+	// alert("DSfsdf");
+    $("#moster_amount")[0].selectedIndex = randomNumberFromRange(0, 3);
+	randomNumberFromRangeBalls(0, 4);
+	$("#game_time").val(randomNumberFromRange(60, 80));
+	$("#Balls_amount").val(randomNumberFromRange(50, 90));
+
+}
+
+
+function randomNumberFromRange(min,max)
+{
+    return  Math.floor(Math.random()*(max-min+1)+min);
+}
+
+function randomNumberFromRangeBalls(min,max)
+{
+	let first = randomNumberFromRange(min, max);
+	let second = randomNumberFromRange(min, max);
+	let third = randomNumberFromRange(min, max);
+    while (first == second || first == third || second == third){
+		second = randomNumberFromRange(min, max);
+		third = randomNumberFromRange(min, max);
+	}
+
+	$("#big_balls_amount")[0].selectedIndex = first;
+	$("#medium_balls_amount")[0].selectedIndex = second;
+	$("#small_balls_amount")[0].selectedIndex = third;
+
+	Up_key = 38;
+	Down_key =40;
+	left_key = 37;
+	Right_key = 39;
+}
 
 
 function checkIfExist()
@@ -256,6 +289,8 @@ function stopGame()
 	playMusic = false;
 	audio.pause();
 	audio.currentTime = 0
+	if (!playMusic)
+	document.getElementById("music").value = "Stop Music";
 }
 
 function setMusic()
@@ -295,6 +330,7 @@ function setMusic()
 
 function Start() {
 
+	context = canvas.getContext("2d");
 	audio.currentTime = 0
 	audio.play();
 	playMusic = true;
@@ -304,6 +340,7 @@ function Start() {
 	pac_color = "yellow";
 	pacman_remain = 5;
 	ateShape = false;
+	endGame = false;
 	start_time = new Date();
 
 	for (let i = 0; i < 10; i++) {
@@ -444,28 +481,23 @@ function findRandomEmptyCell() {
 	do {
 		i = Math.floor(Math.random() * 10);
 		j = Math.floor(Math.random() * 10);
-	} while (board[i][j] != 0 );
+	} while (board[i][j] != 0);
 
 	return [i, j];
 }
 
 function GetKeyPressed() {
-	// var up1 = up.which || up.keyCode;
-	// var down1 = down.which || down.keyCode;
-	// var left1 = left.which || left.keyCode;
-	// var right1 = right.which || right.keyCode;
 
-	// alert(up1);
-	if (keysDown[38]) { // up
+	if (keysDown[Up_key]) { // up
 		return 1;
 	}
-	if (keysDown[40]) { // down
+	if (keysDown[Down_key]) { // down
 		return 2;
 	}
-	if (keysDown[37]) { // left
+	if (keysDown[left_key]) { // left
 		return 3;
 	}
-	if (keysDown[39]) { // right
+	if (keysDown[Right_key]) { // right
 		return 4;
 	}
 }
@@ -527,6 +559,7 @@ function Draw(x) {
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
 	lblpacman_remain.value = pacman_remain;
+	existBalls = false;
 	for (let i = 0; i < 10; i++) {
 		for (let j = 0; j < 10; j++) {
 			center = new Object();
@@ -558,16 +591,19 @@ function Draw(x) {
 				context.arc(center.x, center.y, 15, 0, 2 * Math.PI);
 				context.fillStyle = threeColors[0]; 
 				context.fill();
+				existBalls = true;
 			} else if (board[i][j] == 2) {
 				context.beginPath();
 				context.arc(center.x, center.y, 15, 0, 2 * Math.PI);
 				context.fillStyle = threeColors[1]; 
 				context.fill();
+				existBalls = true;
 			} else if (board[i][j] == 3) {
 				context.beginPath();
 				context.arc(center.x, center.y, 15, 0, 2 * Math.PI);
 				context.fillStyle = threeColors[2];
-				context.fill();		
+				context.fill();	
+				existBalls = true;	
 			} else if (board[i][j] == 4) {
 				context.beginPath();
 				context.rect(center.x - 30, center.y - 30, 60, 60);
@@ -590,6 +626,8 @@ function UpdatePosition() {
 	if (x == 1) {
 		if (shape.j > 0 && board[shape.i][shape.j - 1] != 4) { //up
 			if (secBoard[shape.i][shape.j - 1] == 7) {
+				if (board[shape.i[shape.j - 1] != 0])
+					sum_balls -= 1;
 				ateShape = true;
 				score += 50;
 				board[shape.i][shape.j - 1] = 0;
@@ -620,6 +658,8 @@ function UpdatePosition() {
 	if (x == 2) {
 		if (shape.j < 9 && board[shape.i][shape.j + 1] != 4) { //down
 			if (secBoard[shape.i][shape.j + 1] == 7) {
+				if (board[shape.i][shape.j + 1] != 0)
+					sum_balls -= 1;
 				ateShape = true;
 				score += 50;
 				board[shape.i][shape.j + 1] = 0;
@@ -650,6 +690,8 @@ function UpdatePosition() {
 	if (x == 3) {
 		if (shape.i > 0 && board[shape.i - 1][shape.j] != 4) { //left
 			if (secBoard[shape.i - 1][shape.j] == 7) {
+				if (board[shape.i - 1[shape.j] != 0])
+					sum_balls -= 1;
 				ateShape = true;
 				score += 50;
 				board[shape.i - 1][shape.j] = 0;
@@ -680,6 +722,8 @@ function UpdatePosition() {
 	if (x == 4) {
 		if (shape.i < 9 && board[shape.i + 1][shape.j] != 4) { //right
 			if (secBoard[shape.i + 1][shape.j] == 7) {
+				if (board[shape.i + 1[shape.j] != 0])
+					sum_balls -= 1;
 				ateShape = true;
 				score += 50;
 				board[shape.i + 1][shape.j] = 0;
@@ -733,13 +777,14 @@ function UpdatePosition() {
 		window.clearInterval(interval);
 		window.alert("Winner!!!");
 	} 
-	else if (sum_balls == 0 && inGame) {
-		window.clearInterval(interval);
-		window.alert("Winner!!!");
-	}
 	else if (pacman_remain == 0 && inGame){
 		window.clearInterval(interval);
 		window.alert("Loser!");
+	}
+	else if (sum_balls <= 1 && !existBalls && inGame)
+	{
+		window.clearInterval(interval);
+		window.alert("Winner!!!");
 	} 
 	else {
 		Draw(x);

@@ -18,7 +18,7 @@
 	<body>
 		<div style="background-image: url('pics/wh.jpg');"></div>
 
-		<img src="pics/‏‏pac_head1.PNG" alt="Girl in a jacket" width="600" height="80">
+		<img src="pics/‏‏pac_head2.PNG" alt="Girl in a jacket" width="800" height="90">
 
 		<div class="nav">
 			<ul>
@@ -97,37 +97,60 @@
 
 		  <div id="gameSettings">
 			<br>
-			<form id="form_settings" onsubmit="submitSettings()">
-			  <h1>Set your preferences</h1>
+			<br>
+			<form id="form_settings" onsubmit="show('game','welcome', 'register', 'login', 'gameSettings', 'about'); Start();">
+			  <h1>Please enter your settings for the game</h1>
+			  <label>For arrow keys, don't press any key</label><br><br>
 			  <label> Up key: </label>
-			  <input id="Up_key" type="text" value="w" class="inp">
+			  <input id="Up_key" type="text" placeholder="w" class="inp">
 			  <br>
 			  <br>
 			  <label> Down key: </label>
-			  <input id="Down_key" type="text" value="s" class="inp">
+			  <input id="Down_key" type="text" placeholder="s" class="inp">
 			  <br>
 			  <br>
 			  <label> Right key: </label>
-			  <input id="Right_key" type="text" value="d" class="inp">
+			  <input id="Right_key" type="text" placeholder="d" class="inp">
 			  <br>
 			  <br>
 			  <label> left key: </label>
-			  <input id="left_key" type="text" value="a" class="inp">
+			  <input id="left_key" type="text" placeholder="a" class="inp">
 			  <br>
 			  <br>
 			  <label> Balls amount (must be between 50 - 90): </label>
 			  <input id="Balls_amount" type="text" value="55" class="inp">
 			  <br>
 			  <br>
-			  <label> Balls color (choose 3): </label><br>
-			  <h6>
-				<input id="Red" type="checkbox" value="Red" ><b> Red</b><br>
-				<input id="Blue" type="checkbox" value="Blue" checked> <b>Blue</b><br>
-				<input id="Green" type="checkbox" value="Green"><b>Green</b> <br>
-				<input id="Black" type="checkbox" value="Black" checked> <b>Black</b><br>
-				<input id="Purple" type="checkbox" value="Purple"><b>Purple</b><br>
-				<input id="Pink" type="checkbox" value="Pink" checked><b>Pink</b> <br>
-			</h6>
+			  <label id="threeBalls"> Choose balls color (must be 3 different): </label><br>
+			  <label> First Ball (25 points): </label><br>
+			  <select id="small_balls_amount">
+				<option value="Red">Red</option>
+				<option value="Blue">Blue</option>
+				<option value="Green">Green</option>
+				<option value="Purple">Purple</option>
+				<option value="Pink">Pink</option>
+			  </select>
+			  <br>
+
+			  <label> Second Ball (15 points): </label><br>
+			  <select id="medium_balls_amount">
+				<option value="Blue">Blue</option>
+				<option value="Red">Red</option>
+				<option value="Green">Green</option>
+				<option value="Purple">Purple</option>
+				<option value="Pink">Pink</option>
+			  </select>
+			  <br>
+
+			  <label> Thirs Ball (5 points): </label><br>
+			  <select id="big_balls_amount">
+				<option value="Green">Green</option>
+				<option value="Red">Red</option>
+				<option value="Blue">Blue</option>
+				<option value="Purple">Purple</option>
+				<option value="Pink">Pink</option>
+			  </select>
+			  <br>
 			  <br>
 			  <label> Set time in seconds (minimum 60 seconds): </label>
 			  <input id="game_time" type="text" value="70" size="1" class="inp">
@@ -142,7 +165,10 @@
 			  </select>
 			  <br>
 			  <br>
-			  <input id="submit_settings" type="submit" class="button" value="Submit" />
+			  <input id="randomize" type="button" class="button" value="random settings" onclick="randomsettings()" />
+			  <br>
+			  <input id="submit_settings" type="submit" class="button" value="Submit"/>
+			  <br>
 			</form>
 		  </div>
 
@@ -155,22 +181,23 @@
 		<div id="game" class="gameP">
 			<br>
 			<div class="nameU">
-			<b>Good Luck <span id="outputName"></span>!</b>
-			</div>
-			<div class="canv">
-			<canvas id="canvas" height="600" width="600" style="border: 3px solid rgb(150, 68, 53);"></canvas>
-			</div>
+				<b>GOOD LUCK <span id="outputName"></span>!</b>
+				</div>
 			<div id="score">
-				<b><label for="lblScore">Score:</label></b>
+				<b><label for="lblScore">SCORE:</label></b>
 				<input id="lblScore" type="text" class="inp"/>
 			</div>
 			<div id="time">
-				<b><label for="lblTime">Time:</label></b>
+				<b><label for="lblTime">TIME:</label></b>
 				<input id="lblTime" type="text" class="inp"/>
 			</div>
 			<div id="lives">
-				<b><label for="lblpacman_remain">Lives:</label></b>
+				<b><label for="lblpacman_remain">LIVES:</label></b>
 				<input id="lblpacman_remain" type="text" class="inp"/>
+			</div>
+			<br>
+			<div class="canv">
+			<canvas id="canvas" height="600" width="600" style="border: 3px solid rgb(150, 68, 53);"></canvas>
 			</div>
 			<br>
 			<div>
@@ -181,6 +208,14 @@
 			</div>
 			<br>
 		</div>
+
+		<footer>
+			<div class="footer">
+				©️ All Rights Reserved
+				<a href="mailto:amittt@post.bgu.ac.il">amittt@post.bgu.ac.il</a>
+				<a href="mailto:horoshah@post.bgu.ac.il">horoshah@post.bgu.ac.il</a>
+				</div>
+		</footer>
 
 	</body>
 
