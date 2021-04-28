@@ -45,7 +45,6 @@ var movingMon1Interval;
 var movingMon2Interval;
 var movingMon3Interval;
 var movingMon4Interval;
-let batteryImage = new Image();
 let clockImage = new Image();
 let monster = new Image();
 let fiftyPoints = new Image;
@@ -370,7 +369,6 @@ function Start() {
 	slow.src = 'pics/slow.png'
 	lives.src = 'pics/lives.png';
 	fiftyPoints.src = 'pics/fiftyPoints.png';
-	batteryImage.src = 'pics/battery.png';
 	monster.src = 'pics/monster.png'
 	setValuesToSettings();
 	context = canvas.getContext("2d");
