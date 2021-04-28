@@ -151,6 +151,12 @@ $(document).ready(function() {
 				var onlyLettersCheck = regexPass1.test(password);
 				var regexPass2 = /^[0-9]+$/;
 				var onlyNumbersCheck = regexPass2.test(password);
+
+				if (onlyLettersCheck || onlyNumbersCheck)
+				{
+					$('#myPassword').after('<span class="error"><br>Password must include both numbers and letters</span>');
+					isValidForm = false;
+				}
 			}
 		if (onlyLettersCheck || onlyNumbersCheck)
 		{
