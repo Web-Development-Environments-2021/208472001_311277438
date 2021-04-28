@@ -158,11 +158,6 @@ $(document).ready(function() {
 					isValidForm = false;
 				}
 			}
-		if (onlyLettersCheck || onlyNumbersCheck)
-		{
-			$('#myPassword').after('<span class="error"><br>Password must include both numbers and letters</span>');
-			isValidForm = false;
-		}
 
 	if (isValidForm)
 	{
