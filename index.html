@@ -1,275 +1,333 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="style.css" />
-	
-		<script src="./jquery-3.4.1.slim.min.js"></script>
-		<script type="text/javascript" src="./app.js"></script>
-			<script>
-				function startWindow()
-				{
-					show('welcome','register', 'login', 'gameSettings', 'about', 'game');
-				}
-			window.addEventListener("load", startWindow, false);
-			</script>
 
-	</head>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css" />
 
-	<body>
-		<div style="background-image: url('pics/wh.jpg');"></div>
+	<script src="./jquery-3.4.1.slim.min.js"></script>
+	<script type="text/javascript" src="./app.js"></script>
+	<script>
+		function startWindow() {
+			show('welcome', 'register', 'login', 'gameSettings', 'game');
+		}
+		window.addEventListener("load", startWindow, false);
+	</script>
+</head>
 
-		<img src="pics/‏‏pac_head2.PNG" alt="Girl in a jacket" width="800" height="90">
+<body>
+	<!-- <div style="background-image: url('pics/cover.PNG');"></div> -->
 
-		<div class="nav">
-			<ul>
-			  <li><a href="#" onclick="show('welcome','register', 'login', 'gameSettings', 'about', 'game'); stopGame()" >Welcome</a></li>
-			  <li><a href="#" onclick="show('register','welcome', 'about', 'login', 'gameSettings', 'game'); stopGame()">Register</a></li>
-			  <li><a href="#" onclick="show('login','welcome', 'register', 'about', 'gameSettings', 'game') ; stopGame()">Login</a></li>
-			  <li><a href="#" onclick="show('about','welcome', 'register', 'login', 'gameSettings', 'game'); stopGame()">About</a></li>
-			  <!-- <a class="navbar-brand">
-				<div class="logo-image">
-					  <img src="files/s.PNG"  width="46px" height="46px" class="img-fluid">
-				</div> -->
-			  </a>
-			</ul>
-		  </div>
+	<img src="pics/pac_head6.png" alt="Girl in a jacket" width="auto" height="70">
+
+	<div class="nav">
+		<ul>
+			<li><a href="#"
+					onclick="show('welcome','register', 'login', 'gameSettings', 'game'); stopGame()">Welcome</a></li>
+			<li><a href="#"
+					onclick="show('register','welcome', 'game', 'login', 'gameSettings'); stopGame()">Register</a></li>
+			<li><a href="#" onclick="show('login','welcome', 'register', 'game', 'gameSettings') ; stopGame()">Login</a>
+			</li>
+			<li><a href="#" onclick="showAboutDialog()">About</a></li>
+			</a>
+		</ul>
+	</div>
 
 
-		<div id="welcome" class="welcome">
+	<div id="welcome" class="welcome">
+		<div id="textWelcomeDiv">
 			<br>
 			<h1>Let's Play Pacman!</h1>
 			<br>
 			<h5>If you haven't registered yet, click here:</h5>
 			<br>
-			<input class="button" type="button" value="Register" onclick="show('register','welcome', 'login', 'gameSettings', 'about', 'game');" />
+			<input class="button" type="button" value="Register"
+				onclick="show('register','welcome', 'login', 'gameSettings', 'game');" />
 			<br>
 			<br>
 			<h5>Registered user - Login to play:</h5>
 			<br>
-			<input class="button" type="button" value="Login" onclick="show('login','welcome', 'register', 'gameSettings', 'about', 'game');" />
+			<input class="button" type="button" value="Login"
+				onclick="show('login','welcome', 'register', 'gameSettings', 'game');" />
+		</div>
+		<div id="welcomeImageDiv">
+			<img id="welcomeImage" src="pics/welcome.png" width="45%">
+		</div>
+	</div>
 
-		  </div>
-
-		  <div id="register" class="details">
-			  <br>
-			  <form id="regForm" action="" method="post">
-				<h1>Enter your details to sign in</h1>
-				<label> Username: </label>
-				<input id="myUsername" type="text"/>
-				<br>
-				<h3>
-				Password: <input type="password" id="myPassword"/>
-				<!-- An element to toggle between password visibility -->
-				<input type="checkbox" onclick="myFunction1()" >Show Password
-				</h3>
-				<label>Full Name:</label>
-				<input id="name" type="text"/>
-				<br>
-				<br>
-				<h4><label>Email:</label>
-				<input id="email"/></h4>
-				<br>
-				<label class="date" for="start">Birth Date:</label>
-				<input type="date" id="start" name="trip-start">
-					<!-- value="2018-07-22"
+	<div id="register" class="details">
+		<br>
+		<form id="regForm" action="" method="post">
+			<h1>Enter your details to sign in</h1>
+			<br>
+			<label> Username: </label>
+			<input id="myUsername" type="text" class="inp2"/>
+			<br><br>
+			<label>Password:</label>
+			<input type="password" id="myPassword" class="inp2"/>
+			<!-- An element to toggle between password visibility -->
+			<div id="passw"> <input type="checkbox" onclick="myFunction1()">Show Password </div>
+			<br><br>
+			<label>First Name:</label>
+			<input id="Fname" type="text" class="inp2"/>
+			<br><br>
+			<label>Last Name:</label>
+			<input id="Lname" type="text" class="inp2"/>
+			<br><br>
+			<label>Email:</label>
+			<input id="email" class="inp2"/>
+			<br><br>
+			<label class="date" for="start">Birth Date:</label>
+			<input type="date" id="start" name="trip-start" class="inp2">
+			<!-- value="2018-07-22"
 					min="2018-01-01" max="2018-12-31"> -->
-				<br>
-				<br>
-				<input class="button" type="submit" value="Submit"/>
-				</form>
-				<div id="display"></div>
-		  </div>
+			<br><br><br>
+			<input id="submitRegistration" class="button" type="submit" value="Submit" />
+		</form>
+		<!-- <img id="registrationImage" src="pics/registration.png" width="30%"> -->
+	</div>
 
-		  <div id="login" class="details">
-			  <br>
-			  <h1>Enter your account details for Login</h1>
-			  <label>Username:</label>
-			  <input id="usernameLogin" type="text" value="k"/>
-			  <br>
-			  <br>
-			  <div class="pas"><label>Password:</label>
-			  <input id="passwordLogin" type="password" value="k"/>
-			  <input type="checkbox" onclick="myFunction2()" >Show Password
-			  </div>
-			  <br>
-			  <input class="button" type="button" value="Submit" onclick="checkIfExist()" />
-		  </div>
+	<div id="login" class="details">
+		<div id="loginText">
+			<br>
+			<h1>Enter your account details for Login</h1>
+			<br>
+			<label>Username:</label>
+			<input id="usernameLogin" type="text" class="inp2"/>
+			<br><br>
+			<label>Password:</label>
+			<input id="passwordLogin" type="password" class="inp2"/>
+			<div id="passw"><input type="checkbox" onclick="myFunction2()">Show Password </div>
+			<br>
+			<br><br>
+			<input id="loginSubmiion" class="button" type="button" value="Submit" onclick="checkIfExist()" />
+		</div>
+		<!-- <div id="loginImage">
+			<img id="loginPicture" src="pics/login.png" width="10%">
+		</div> -->
+	</div>
 
-		  <div id="gameSettings">
+	<div id="gameSettings">
+		<form id="form_settings">
+			<h1>Set your preferences:</h1>
+			<label>*For arrow keys, don't press any key</label><br><br>
+			<label> Up key: </label>
+			<input id="Up_key" type="text" maxlength="1" placeholder="ArrowUp" class="inp"
+				onkeydown="upKeyListener(event)">
 			<br>
 			<br>
-			<form id="form_settings" onsubmit="show('game','welcome', 'register', 'login', 'gameSettings', 'about'); Start();">
-			  <h1>Please enter your settings for the game</h1>
-			  <label>For arrow keys, don't press any key</label><br><br>
-			  <label> Up key: </label>
-			  <input id="Up_key" type="text" placeholder="w" class="inp">
-			  <br>
-			  <br>
-			  <label> Down key: </label>
-			  <input id="Down_key" type="text" placeholder="s" class="inp">
-			  <br>
-			  <br>
-			  <label> Right key: </label>
-			  <input id="Right_key" type="text" placeholder="d" class="inp">
-			  <br>
-			  <br>
-			  <label> left key: </label>
-			  <input id="left_key" type="text" placeholder="a" class="inp">
-			  <br>
-			  <br>
-			  <label> Balls amount (must be between 50 - 90): </label>
-			  <input id="Balls_amount" type="text" value="55" class="inp">
-			  <br>
-			  <br>
-			  <label id="threeBalls"> Choose balls color (must be 3 different): </label><br>
-			  <label> First Ball (25 points): </label><br>
-			  <select id="small_balls_amount">
+			<label> Down key: </label>
+			<input id="Down_key" type="text" maxlength="1" placeholder="ArrowDown" class="inp"
+				onkeydown="downKeyListener(event)">
+			<br>
+			<br>
+			<label> Right key: </label>
+			<input id="Right_key" type="text" maxlength="1" placeholder="ArrowRight" class="inp"
+				onkeydown="rightKeyListener(event)">
+			<br>
+			<br>
+			<label> left key: </label>
+			<input id="left_key" type="text" maxlength="1" placeholder="ArrowLeft" class="inp"
+				onkeydown="leftKeyListener(event)">
+			<br>
+			<br>
+			<label> Balls amount: </label>
+			<input id="Balls_amount" type="text" maxlength="2" value="55" class="inp">
+			<br>
+			<br>
+			<!-- <label id="threeBalls"> Choose balls color: </label><br><br> -->
+			<label> First Ball (25 points): </label>
+			<select id="small_balls_amount">
 				<option value="Red">Red</option>
 				<option value="Blue">Blue</option>
 				<option value="Green">Green</option>
 				<option value="Purple">Purple</option>
 				<option value="Pink">Pink</option>
-			  </select>
-			  <br>
+				<option value="White">White</option>
 
-			  <label> Second Ball (15 points): </label><br>
-			  <select id="medium_balls_amount">
-				<option value="Blue">Blue</option>
-				<option value="Red">Red</option>
-				<option value="Green">Green</option>
-				<option value="Purple">Purple</option>
-				<option value="Pink">Pink</option>
-			  </select>
-			  <br>
+			</select>
+			<br> <br>
 
-			  <label> Thirs Ball (5 points): </label><br>
-			  <select id="big_balls_amount">
+			<label> Second Ball (15 points): </label>
+			<select id="medium_balls_amount">
+				<option value="White">White</option>
+				<option value="Blue">Blue</option>
+				<option value="Red">Red</option>
+				<option value="Green">Green</option>
+				<option value="Purple">Purple</option>
+				<option value="Pink">Pink</option>
+			</select>
+			<br> <br>
+
+			<label> Third Ball (5 points): </label>
+			<select id="big_balls_amount">
 				<option value="Green">Green</option>
 				<option value="Red">Red</option>
 				<option value="Blue">Blue</option>
 				<option value="Purple">Purple</option>
 				<option value="Pink">Pink</option>
-			  </select>
-			  <br>
-			  <br>
-			  <label> Set time in seconds (minimum 60 seconds): </label>
-			  <input id="game_time" type="text" value="70" size="1" class="inp">
-			  <br>
-			  <br>
-			  <label> Set mosters amount </label>
-			  <select id="moster_amount">
+				<option value="White">White</option>
+			</select>
+			<br>
+			<br>
+			<label> Game Time (seconds): </label>
+			<input id="game_time" type="text" maxlength="2" value="70" size="1" class="inp">
+			<br>
+			<br>
+			<label> Monsters Amount: </label>
+			<select id="moster_amount">
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
 				<option value="4">4</option>
-			  </select>
-			  <br>
-			  <br>
-			  <input id="randomize" type="button" class="button" value="random settings" onclick="randomsettings()" />
-			  <br>
-			  <input id="submit_settings" type="submit" class="button" value="Submit"/>
-			  <br>
-			</form>
-		  </div>
-
-		  <div id="about">
-			  <br>
-			about page
-		  </div>
-		
-
-		<div id="game" class="gameP">
+			</select>
 			<br>
+			<br>
+			<input id="randomize" type="button" class="button" value="Random" onclick="randomsettings()" />
+			<input id="submit_settings" type="submit" class="button" value="Submit" />
+			<br>
+		</form>
+	</div>
+
+	<dialog id="aboutt">
+		<button id="closeAbout" type="button">&times;</button>
+		<div id="textAbout">
+			<h1>Shahar Horovitz and Amit Yosefi</h1>
+			<p>
+				We had 3 forms in the game:<br>
+				1. Registration form.<br>
+				2. Login form.<br>
+				3. Game settings form.<br>
+				<br><br>
+				In each form we needed to deal with input from text box and check their values.<br>
+				We decided to check that forms with jQuery.<br>
+				<br><br>
+				Furtheremore, we used jQuery in the area of the game settings while the game played.<br>
+				<br><br>
+				For those 3 forms we were helped with template from stackoverflow for form-validation template<br>
+				<br><br>
+			</p>
+		</div>
+	</dialog>
+
+
+	<div id="game" class="gameP">
+		<br>
+		<div id="gameResults">
 			<div class="nameU">
-				<b>GOOD LUCK <span id="outputName"></span>!</b>
-				</div>
+				<label>GOOD LUCK</label> <label id="outputName"></label>!
+			</div>
+			<br>
 			<div id="score">
 				<b><label for="lblScore">SCORE:</label></b>
-				<input id="lblScore" type="text" class="inp"/>
+				<input id="lblScore" type="text" class="inp" />
 			</div>
+			<br>
 			<div id="time">
 				<b><label for="lblTime">TIME:</label></b>
-				<input id="lblTime" type="text" class="inp"/>
+				<input id="lblTime" type="text" class="inp" />
 			</div>
+			<br>
 			<div id="lives">
 				<b><label for="lblpacman_remain">LIVES:</label></b>
-				<input id="lblpacman_remain" type="text" class="inp"/>
+				<input id="lblpacman_remain" type="text" class="inp" />
 			</div>
 			<br>
-			<div class="canv">
-			<canvas id="canvas" height="600" width="600" style="border: 3px solid rgb(150, 68, 53);"></canvas>
-			</div>
-			<br>
-			<div>
-				<input id="music" value="Stop Music" type="button" class="button" onclick="setMusic()" />
-			</div>
-			<div>
-				<input value="New Game" type="button" class="button" onclick="show('gameSettings','welcome', 'register', 'login', 'about', 'game'); stopGame()" />
-			</div>
-			<br>
+				<input id="music" value="Stop Music" type="button" class="button" onclick="setMusic()">
+				<input id="new_game" value="New Game" type="button" class="button" onclick="show('gameSettings','welcome', 'register', 'login', 'game'); stopGame()" />
 		</div>
+		<div id="showGame">
+			<div id="canv">
+				<canvas id="canvas" height="500" width="500" style="border: 3px solid rgb(150, 68, 53);"></canvas>
+			</div>
+		</div>
+		<div id="showGameSettings">
+			<label>Your game settings:</label><br><br>
+			<label> Up key: </label>
+			<input id="upKey" type="text" class="inp"><br><br>
+			<label> Down key: </label>
+			<input id="downKey" type="text" class="inp"><br><br>
+			<label> Left key: </label>
+			<input id="leftKey" type="text" class="inp"><br><br>
+			<label> Right key: </label>
+			<input id="rightKey" type="text" class="inp"><br><br>
+			<label> Balls Amount: </label>
+			<input id="ballsAmount" type="text" class="inp"><br><br>
+			<label> 25 Points Ball: </label>
+			<input id="firstBall" type="text" class="inp"><br><br>
+			<label> 15 Points Ball: </label>
+			<input id="secondBall" type="text" class="inp"><br><br>
+			<label> 5 Points Ball: </label>
+			<input id="thirdBall" type="text" class="inp"><br><br>
+			<label> Game Time: </label>
+			<input id="timeInSeconds" type="text" class="inp"><br><br>
+			<label> Monsters Amount: </label>
+			<input id="monsterAmount" type="text" class="inp"><br><br>
+		</div>
+		<br><br>
+	</div>
 
+	<div class="footerDiv">
 		<footer>
-			<div class="footer">
-				©️ All Rights Reserved
-				<a href="mailto:amittt@post.bgu.ac.il">amittt@post.bgu.ac.il</a>
-				<a href="mailto:horoshah@post.bgu.ac.il">horoshah@post.bgu.ac.il</a>
-				</div>
+			<div id="copyRight">
+				<p>Copyright © 2021, All Rights Reserved</p>
+			</div>
+			<div class="mails"><a href="mailto:amittt@post.bgu.ac.il">
+					<div>amittt@post.bgu.ac.il</div>
+				</a></div>
+			<div class="mails"><a href="mailto:horoshah@post.bgu.ac.il">
+					<div>horoshah@post.bgu.ac.il</div>
+				</a></div>
 		</footer>
+	</div>
 
-	</body>
+</body>
 
-	<script>
-		function scrennUsernameRegister()
-		{
-			var name = document.getElementById("myUsername").value;
-			outputName.innerHTML = name;
-		}
-	</script>
+<script>
+	function scrennUsernameRegister() {
+		var name = document.getElementById("myUsername").value;
+		outputName.innerHTML = name;
+	}
+</script>
 
-	<script>
-		function scrennUsernameLogin()
-		{
-			var name = document.getElementById("usernameLogin").value;
-			outputName.innerHTML = name;
-		}
-	</script>
+<script>
+	function scrennUsernameLogin() {
+		var name = document.getElementById("usernameLogin").value;
+		outputName.innerHTML = name;
+	}
+</script>
 
-	<script>
-		function myFunction1() {
-			var x = document.getElementById("myPassword");
-			if (x.type === "password") {
-			  x.type = "text";
-			} else {
-			  x.type = "password";
-			}
-		  }
-		</script>
-
-	<script>
-		function myFunction2() {
-			var x = document.getElementById("passwordLogin");
-			if (x.type === "password") {
+<script>
+	function myFunction1() {
+		var x = document.getElementById("myPassword");
+		if (x.type === "password") {
 			x.type = "text";
-			} else {
+		} else {
 			x.type = "password";
-			}
 		}
-		</script>
+	}
+</script>
 
-
-
-	<script>
-		function show(hidden, shown1, shown2, shown3, shown4, shown5) {
-		document.getElementById(hidden).style.display='block';
-		//   document.getElementById(hidden).style.color = "red";
-		document.getElementById(shown1).style.display='none';
-		document.getElementById(shown2).style.display='none';
-		document.getElementById(shown3).style.display='none';
-		document.getElementById(shown4).style.display='none';
-		document.getElementById(shown5).style.display='none';
-		// return false;
+<script>
+	function myFunction2() {
+		var x = document.getElementById("passwordLogin");
+		if (x.type === "password") {
+			x.type = "text";
+		} else {
+			x.type = "password";
 		}
-	</script>
+	}
+</script>
+
+
+
+<script>
+	function show(hidden, shown1, shown2, shown3, shown4) {
+		document.getElementById(hidden).style.display = 'block';
+		document.getElementById(shown1).style.display = 'none';
+		document.getElementById(shown2).style.display = 'none';
+		document.getElementById(shown3).style.display = 'none';
+		document.getElementById(shown4).style.display = 'none';
+	}
+</script>
 
 </html>
