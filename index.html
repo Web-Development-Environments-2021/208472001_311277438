@@ -78,9 +78,7 @@
 			<input id="email" class="inp2"/>
 			<br><br>
 			<label class="date" for="start">Birth Date:</label>
-			<input type="date" id="start" name="trip-start" class="inp2">
-			<!-- value="2018-07-22"
-					min="2018-01-01" max="2018-12-31"> -->
+			<input type="date" id="start" name="trip-start" max="2021-04-28" class="inp2">
 			<br><br><br>
 			<input id="submitRegistration" class="button" type="submit" value="Submit" />
 		</form>
@@ -109,8 +107,7 @@
 
 	<div id="gameSettings">
 		<form id="form_settings">
-			<h1>Set your preferences:</h1>
-			<label>*For arrow keys, don't press any key</label><br><br>
+			<h1>Set your preferences:</h1> <br><br>
 			<label> Up key: </label>
 			<input id="Up_key" type="text" maxlength="1" placeholder="ArrowUp" class="inp"
 				onkeydown="upKeyListener(event)">
