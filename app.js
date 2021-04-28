@@ -847,14 +847,18 @@ function UpdatePosition() {
 		window.alert("Winner!!!");
 		inGame = false;
 	} 
-	else {
-		Draw(x);
-	}
 
 	if (!inGame)
 	{
-		endMonsters();
+		window.clearInterval(movingMon1Interval);
+		window.clearInterval(movingMon2Interval);
+		window.clearInterval(movingMon3Interval);
+		window.clearInterval(movingMon4Interval);
+		clearMonsters();
 	}
+
+	Draw(x);
+
 }
 function slowMotionMonsters()
 {
