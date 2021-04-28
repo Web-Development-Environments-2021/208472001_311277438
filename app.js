@@ -854,7 +854,6 @@ function UpdatePosition() {
 		window.clearInterval(movingMon2Interval);
 		window.clearInterval(movingMon3Interval);
 		window.clearInterval(movingMon4Interval);
-		clearMonsters();
 	}
 
 	Draw(x);
