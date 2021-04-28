@@ -825,7 +825,6 @@ function UpdatePosition() {
 		sum_balls -= 1;
 	}
 
-
 	board[shape.i][shape.j] = 5;
 	let currentTime = new Date();
 	time_elapsed = game_time - (currentTime - start_time) / 1000;
@@ -834,19 +833,16 @@ function UpdatePosition() {
 		window.clearInterval(interval);
 		window.alert("You are better than " + score + " points!");
 		inGame = false;
-		Draw(x);
 	}
 	else if (score >= 100 && time_elapsed <= 0 && inGame) {
 		window.clearInterval(interval);
 		window.alert("Winner!!!");
 		inGame = false;
-		Draw(x);
 	} 
 	else if (pacman_remain == 0 && inGame){
 		window.clearInterval(interval);
 		window.alert("Loser!");
 		inGame = false;
-		Draw(x);
 	}
 	else if (sum_balls <= 1 && !existBalls && inGame)
 	{
@@ -854,9 +850,6 @@ function UpdatePosition() {
 		window.alert("Winner!!!");
 		inGame = false;
 	} 
-	else {
-		Draw(x);
-	}
 
 	if (!inGame)
 	{
@@ -865,6 +858,8 @@ function UpdatePosition() {
 		window.clearInterval(movingMon3Interval);
 		window.clearInterval(movingMon4Interval);
 	}
+
+	Draw(x);
 
 }
 function slowMotionMonsters()
