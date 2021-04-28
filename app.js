@@ -56,6 +56,15 @@ let nameLeftKey;
 let nameRightKey;
 
 
+$(document).ready(function() {
+	slow.src = 'pics/slow.png';
+	lives.src = 'pics/lives.png';
+	fiftyPoints.src = 'pics/fiftyPoints.png';
+	monster.src = 'pics/monster.png';
+	context = canvas.getContext("2d");
+
+});
+
 function showAboutDialog() {
 	$('#aboutt').show();
 	$(document).mouseup(function (e) {
@@ -366,12 +375,8 @@ function setValuesToSettings(){
 //9 - slow motion
 
 function Start() {
-	slow.src = 'pics/slow.png'
-	lives.src = 'pics/lives.png';
-	fiftyPoints.src = 'pics/fiftyPoints.png';
-	monster.src = 'pics/monster.png'
+
 	setValuesToSettings();
-	context = canvas.getContext("2d");
 	audio.currentTime = 0
 	audio.play();
 	playMusic = true;
