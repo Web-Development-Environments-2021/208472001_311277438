@@ -143,24 +143,20 @@ $(document).ready(function() {
 	if (password.length < 1) {
 		$('#myPassword').after('<span class="error"><br>This field is required</span>');
 		isValidForm = false;
-		} else 
-		{
-			if (password.length < 6)
-			{
+		} else if (password.length < 6) {
 				$('#myPassword').after('<span class="error"><br>Password must be at least 6 characters long</span>');
 				isValidForm = false;
+			} else {
+				var regexPass1 = /^[a-zA-Z]+$/;
+				var onlyLettersCheck = regexPass1.test(password);
+				var regexPass2 = /^[0-9]+$/;
+				var onlyNumbersCheck = regexPass2.test(password);
+				if (onlyLettersCheck || onlyNumbersCheck)
+				{
+					$('#myPassword').after('<span class="error"><br>Password must include both numbers and letters</span>');
+					isValidForm = false;
+				}
 			}
-			var regexPass1 = /^[a-zA-Z]+$/;
-			var onlyLettersCheck = regexPass1.test(password);
-			var regexPass2 = /^[0-9]+$/;
-			var onlyNumbersCheck = regexPass2.test(password);
-			if (onlyLettersCheck || onlyNumbersCheck)
-			{
-				$('#myPassword').after('<span class="error"><br>Password must include both numbers and letters</span>');
-				isValidForm = false;
-			}
-		}
-
 	if (isValidForm)
 	{
 		usernames.push(username);
